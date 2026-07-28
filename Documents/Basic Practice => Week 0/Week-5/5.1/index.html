@@ -1,0 +1,41 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id ="buttonParent">
+
+        </div>
+        <script>
+            let state = {
+                count: 300 // any value we pass as count property value inside state object
+            }
+         function onButtonPress() {
+              state.count++; //updating state 
+              // inbuilt library function of React
+              // Calling it Because state has Changed => ReRender Triggers
+              buttonComponentReRender();
+            }
+//ReRendering Logic when State Changes
+            function buttonComponentReRender() {
+                //First Clear the DOM else multiple component wiill get created
+                document.getElementById("buttonParent").innerHTML = " ";
+                 const component = buttonComponent(state.count); //Basically Return the button whcich is a Component
+                   console.log(component);
+                 //Whatever component the function returns we append it in ButtonParent HTML Eleemnt
+                 document.getElementById("buttonParent").appendChild(component); // Does DOM Manipulatio by aapending child as component varaible defined above
+            }
+
+ // Defining Component =>Taking count which is State Property value as input
+ function buttonComponent(count) {
+     const button = document.createElement("button");
+     button.innerHTML = 'Counter $(count)'; // syntax to define updating variable as button body will be equal to whatever this count variable value is
+     button.setAttribute("onClick",'onButtonPress()');
+     return button; // returns me a Component i.e Reusable which is HTML
+ }
+//Once we Need to Trigger ReRender Manually
+ buttonComponentReRender();
+
+        </script>
+    </body>
+</html>
