@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div>
+
+function updateDomAcctoState(state) {
+
+const parent = document.getElementById("container");
+parent.innerHTML = "";
+
+for(let i = 0; i <state.length; i++) {
+    const child = createChild(state[i].title,state[i].description,state[i].id)
+  parent.appendChild(child);
+}
+}
+
+// server will keep refreshing and upadating => calling this function again and again</state.length>
+// call this update dom function after every 5 second
+window.setInterval(async function() {
+    const res = await fetch();
+    const json = await res.json(); // body of response
+    updateDomAcctoState(json.todos);
+},5000) 
+
+</div>
+
+</body>
+</html>
